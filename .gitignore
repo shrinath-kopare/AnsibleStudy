@@ -1,0 +1,51 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# SSH keys or sensitive files
+*.pem
+*.key
+*.crt
+vault_pass.txt
+vault_password_file
+*.vault.yml
+*.secret.yml
+
+# Inventory or host files (if dynamically generated or local-only)
+inventory/
+hosts
+
+# Ansible logs
+ansible.log
+
+# Role dependencies from galaxy
+roles/  
+!roles/my_custom_roles/   # keep your own roles
+
+# Local dev files
+*.retry
+*.tar.gz
+*.zip
+*.bak
+*.swp
+*.swo
+*.tmp
+
+# VSCode
+.vscode/
+
+# MacOS
+.DS_Store
+
+# Python virtual environments
+venv/
+.env/
+
+# Terraform (if used alongside)
+*.tfstate*
+.terraform/
+
+# Secrets or environment files
+.envrc
+.env.*
