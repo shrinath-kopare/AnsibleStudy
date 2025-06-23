@@ -1,0 +1,31 @@
+- name: Launch 3 local VMs using Multipass
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  vars:
+    vm_count: 1
+    base_name: "ansible-vm"
+    image: 22.04
+    memory: 1G
+    disk: 5G
+    cpus: 1
+
+  tasks:
+    - name: Launch Multipass instances
+      ansible.builtin.command:
+        cmd: >-
+          multipass launch {{ image }}
+          --name {{ base_name }}-{{ item }}
+          --mem {{ memory }}
+          --disk {{ disk }}
+          --cpus {{ cpus }}
+      loop: "{{ range(1, vm_count + 1) | list }}"
+
+    - name: Get VM IPs
+      ansible.builtin.command: multipass list
+      register: vm_list
+
+    - name: Show output
+      debug:
+        msg: "{{ vm_list.stdout_lines }}"

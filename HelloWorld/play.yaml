@@ -1,0 +1,40 @@
+# - name: Test playbook on localhost
+#   hosts: target
+#   gather_facts: true
+
+#   vars:
+#     greeting: "Hello World!"
+
+#   tasks:
+#     - name: Print greeting
+#       debug:
+#         msg: "{{ greeting }}"
+#     # - name: Show all gathered facts
+#     #   debug:
+#     #     var: ansible_facts
+
+
+
+# To **get detailed information about Ubuntu OS** using Ansible, ensure `gather_facts: true` is set (which you already did), and then extract these key facts:
+
+### ✅ Use this task block in your playbook:
+- name: Show Ubuntu OS details
+  hosts: target
+  gather_facts: true
+
+  tasks:
+    - name: OS Distribution (e.g. Ubuntu)
+      debug:
+        var: ansible_facts['distribution']
+
+    - name: OS Version (e.g. 22.04)
+      debug:
+        var: ansible_facts['distribution_version']
+
+    - name: OS Codename (e.g. jammy)
+      debug:
+        var: ansible_facts['lsb']['codename']
+
+    - name: OS Description (e.g. Ubuntu 22.04.4 LTS)
+      debug:
+        var: ansible_facts['lsb']['description']

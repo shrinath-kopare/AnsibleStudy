@@ -1,0 +1,20 @@
+- name: Show Ubuntu OS details
+  hosts: ansible_lab
+  gather_facts: true
+
+  tasks:
+    - name: OS Distribution (e.g. Ubuntu)
+      debug:
+        var: ansible_facts['distribution']
+
+    - name: OS Version (e.g. 22.04)
+      debug:
+        var: ansible_facts['distribution_version']
+
+    - name: OS Codename (e.g. jammy)
+      debug:
+        var: ansible_facts['lsb']['codename']
+
+    - name: OS Description (e.g. Ubuntu 22.04.4 LTS)
+      debug:
+        var: ansible_facts['lsb']['description']
